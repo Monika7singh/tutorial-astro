@@ -1,5 +1,8 @@
 ---
-import '../styles/global.css';
+import Navigation from '../components/Navigation.astro';
+import "../styles/global.css";
+
+import Footer from '../components/Footer.astro';
 
 const pageTitle = "About Me";
 const identity = {
@@ -27,24 +30,25 @@ const textCase = "uppercase";
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
-    <style define:vars={{ skillColor, fontWeight, textCase }}>
+    <style>
       h1 {
-        color: purple;
+        color: var(--headingColor);
         font-size: 4rem;
       }
       .skill {
-        color: green;
-        color: var(--skillColor);
+        color: var(--textColor);
         font-weight: var(--fontWeight);
         text-transform: var(--textCase);
         font-weight: bold;
       }
+
+      body {
+        background-color: yellowgreen;
+      }
     </style>
   </head>
   <body>
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/blog/">Blog</a>
+    <Navigation />
 
     <h1>{pageTitle}</h1>
     <h2>... and my new Astro site!</h2>
@@ -77,6 +81,7 @@ const textCase = "uppercase";
     <p>My skills are:</p>
     <ul>
       {skills.map((skill) => <li class="skill">{skill}</li>)}
+      <li class="skill">HTML</li>
     </ul>
 
     {happy && <p>I am happy to be learning Astro!</p>}
@@ -90,5 +95,6 @@ const textCase = "uppercase";
         <p>My goal is not 3 days.</p>
       )
     }
+    <Footer />
   </body>
 </html>
